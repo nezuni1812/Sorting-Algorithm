@@ -126,7 +126,7 @@ void QuickComp(int a[], int left, int right, unsigned long long &compare) { //Kh
         QuickComp(a, i, right, compare);
 }
 
-void Counting(int a[], int n){
+void Counting(int a[], int n) {
     int maxVal = a[0];
     for (int i = 0; i < n; i++)
         if (maxVal < a[i])
@@ -152,7 +152,7 @@ void Counting(int a[], int n){
         a[i] = b[i];
 }
 
-void RadixLSD(int a[], int n){
+void RadixLSD(int a[], int n) {
     int maxVal = a[0];
     
     for (int i = 1; i < n; i++)
