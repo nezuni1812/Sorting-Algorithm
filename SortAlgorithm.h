@@ -98,8 +98,49 @@ void CountingComp() {
 
 }
 
-void RadixComp() {
-
+void radixLSDSort(int a[], int n){
+    int maxVal = a[0];
+    
+    for (int i = 1; i < n; i++)
+        if (a[i] > maxVal)
+            maxVal = a[i];
+            
+    int nDigit = 0;
+    do {
+        nDigit++;
+        maxVal/=10;
+    }
+    while (maxVal != 0);
+    
+    int **numTable = new int * [10];
+    for (int x = 0; x < 10; x++)
+        numTable[x] = new int [n];
+        
+    int expo = 1;
+    for (int i = 0; i < nDigit; i++){
+        int numCount[10] = {0};
+            
+        for (int j = 0; j < n; j++){
+            int dgt = a[j] / expo % 10;
+            
+            numTable[dgt][numCount[dgt]++] = a[j];
+        }
+        
+        int index = 0;
+        for (int j = 0; j < 10; j++){
+            for (int k = 0; k < numCount[j]; k++){
+                a[index++] = numTable[j][k];
+            }
+        }
+        
+        expo*=10;
+    }
+    
+    for (int i = 0; i < 10; i++)
+        delete[] numTable[i];
+        
+    delete[] numTable;
+    
 }
 
 void FlashComp() {
