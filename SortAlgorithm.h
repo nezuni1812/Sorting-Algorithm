@@ -62,12 +62,28 @@ void ShakerComp() {
 
 }
 
-void Shell() {
-
+void Shell(int a[], int n) {
+    for (int i = n / 2; i > 0; i /= 2) {
+        for (int j = i; j < n; j++) {
+            int temp = a[j];
+            int k;
+            for (k = j; k >= i && a[k - i] > temp; k -= i)
+                a[k] = a[k - i];
+            a[k] = temp;
+        }
+    }
 }
 
-void ShellComp() {
-
+void ShellComp(int a[], int n, unsigned long long &compare) {
+    for (int i = n / 2; ++compare && i > 0; i /= 2) {
+        for (int j = i; ++compare && j < n; j++) {
+            int temp = a[j];
+            int k;
+            for (k = j; ++compare && k >= i && ++compare && a[k - i] > temp; k -= i)
+                a[k] = a[k - i];
+            a[k] = temp;
+        }
+    }
 }
 
 void Heap() {
@@ -86,7 +102,7 @@ void MergeComp() {
 
 }
 
-void Quick(int a[], int left, int right) { //Khi gọi hàm, truyền left = 0, right = n - 1
+void Quick(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0, right = n - 1
     int pivot = a[(left + right)/2];
     int i = left, j = right;
     while (i < j) {
