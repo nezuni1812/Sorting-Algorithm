@@ -94,7 +94,7 @@ void QuickComp() {
 
 }
 
-void coutingSort(int a[], int n){
+void CoutingSort(int a[], int n){
     int maxVal = a[0];
     for (int i = 0; i < n; i++)
         if (maxVal < a[i])
@@ -120,7 +120,7 @@ void coutingSort(int a[], int n){
         a[i] = b[i];
 }
 
-void radixLSDSort(int a[], int n){
+void RadixLSDSort(int a[], int n){
     int maxVal = a[0];
     
     for (int i = 1; i < n; i++)
