@@ -2,11 +2,19 @@
 
 using namespace std;
 
-void  SelectionSort() {
+void SelectionSort() {
 
 }
 
-void  InsertionSort() {
+void SelectionSortComp() {
+
+}
+
+void InsertionSort() {
+
+}
+
+void InsertionSortComp() {
 
 }
 
@@ -14,7 +22,15 @@ void BubbleSort() {
 
 }
 
+void BubbleSortComp() {
+
+}
+
 void ShakerSort() {
+
+}
+
+void ShakerSortComp() {
 
 }
 
@@ -22,7 +38,15 @@ void ShellSort() {
 
 }
 
+void ShellSortComp() {
+
+}
+
 void HeapSort() {
+
+}
+
+void HeapSortComp() {
 
 }
 
@@ -30,18 +54,26 @@ void MergeSort() {
 
 }
 
+void MergeSortComp() {
+
+}
+
 void QuickSort() {
 
 }
 
-void CountingSort() {
+void QuickSortComp() {
 
 }
 
-void RadixSort() {
+void CountingSortComp() {
 
 }
 
-void FlashSort() {
+void RadixSortComp() {
+
+}
+
+void FlashSortComp() {
 
 }
