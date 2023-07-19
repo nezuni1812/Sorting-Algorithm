@@ -2,8 +2,14 @@
 
 using namespace std;
 
-void Selection() {
-
+void Selection(int a[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; ++j) 
+            if (a[j] < a[minIndex]) 
+                minIndex = j;
+        swap(a[i], a[minIndex]);
+    }
 }
 
 void SelectionComp(int a[], int n, unsigned long long &compare){
@@ -16,8 +22,16 @@ void SelectionComp(int a[], int n, unsigned long long &compare){
     }
 }
 
-void Insertion() {
-
+void Insertion(int a[], int n){
+    for (int i = 1; i < n; ++i) {
+        int key = a[i];
+        int j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j = j - 1;
+        }
+        a[j + 1] = key;
+    }
 }
 
 void InsertionComp(int a[], int n, unsigned long long &compare){
