@@ -94,8 +94,30 @@ void QuickComp() {
 
 }
 
-void CountingComp() {
-
+void coutingSort(int a[], int n){
+    int maxVal = a[0];
+    for (int i = 0; i < n; i++)
+        if (maxVal < a[i])
+            maxVal = a[i];
+            
+    int *frequency = new int [maxVal + 1];
+    for (int i = 0; i < maxVal + 1; i++)
+        frequency[i] = 0;
+    
+    for (int i = 0; i < n; i++)
+        frequency[a[i]]++;
+        
+    for (int i = 1; i <= maxVal; i++)
+        frequency[i] += frequency[i - 1];
+        
+    int *b = new int [n];
+    for (int i = n - 1; i >= 0; i--){
+        b[frequency[a[i]] - 1] = a[i];
+        frequency[a[i]]--;
+    }
+    
+    for (int i = 0; i < n; i++)
+        a[i] = b[i];
 }
 
 void radixLSDSort(int a[], int n){
