@@ -86,25 +86,44 @@ void MergeComp() {
 
 }
 
-void Quick(int a[], int first, int last) {
-    int pivot = a[(first + last)/2];
-    int i = first;
-    int j = last;
-    do {
-        while (a[i] < pivot) i++;
-        while (a[j] > pivot) j--;
+void Quick(int a[], int left, int right) { //Khi gọi hàm, truyền left = 0, right = n - 1
+    int pivot = a[(left + right)/2];
+    int i = left, j = right;
+    while (i < j) {
+        while (a[i] < pivot) 
+            i++;
+        while (a[j] > pivot) 
+            j--;
         if (i <= j) {
-            swap(a[i],a[j]);
+            swap(a[i], a[j]);
             i++;
             j--;
         }
-    } while (i <= j);
-    if (first < j) Quick(a, first, j);
-    if (i < last) Quick(a, i, last);
+    }
+    if (left < j) 
+        Quick(a, left, j);
+    if (i < right) 
+        Quick(a, i, right);
 }
 
-void QuickComp() {
-
+void QuickComp(int a[], int left, int right, unsigned long long &compare) { //Khi gọi hàm, truyền left = 0, right = n - 1
+    int pivot = a[(left + right)/2];
+    int i = left, j = right;
+    while (++compare && i < j) {
+        while (++compare && a[i] < pivot) 
+            i++;
+        while (++compare && a[j] > pivot) 
+            j--;
+        if (++compare && i <= j) {
+            swap(a[i], a[j]);
+            i++;
+            j--;
+        }
+    }
+    if (++compare && left < j) 
+        QuickComp(a, left, j, compare);
+    if (++compare && i < right) 
+        QuickComp(a, i, right, compare);
 }
 
 void Counting(int a[], int n){
