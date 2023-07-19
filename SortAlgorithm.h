@@ -165,7 +165,7 @@ void RadixLSD(int a[], int n){
     
 }
 
-void FlashComp(int a[], int n) {
+void Flash(int a[], int n) {
     int minVal = a[0];
 	int max = 0;
 	int m = int(0.45 * n);
