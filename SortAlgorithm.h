@@ -107,7 +107,7 @@ void QuickComp() {
 
 }
 
-void Couting(int a[], int n){
+void Counting(int a[], int n){
     int maxVal = a[0];
     for (int i = 0; i < n; i++)
         if (maxVal < a[i])
