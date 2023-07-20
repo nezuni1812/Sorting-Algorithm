@@ -24,13 +24,17 @@ int *copyArr(int *a, int n){
 }
 
 int commandLineParser(int argc, char* argv[]){
+    // Nếu không có argument -> argc == 1
     if (argc == 1)
         return 0;
         
+    // Nếu ở mode Algorithm -> return 1
     if (strcmp(argv[1], "-a") == 0)
         return 1;
         
-    return 2;
+    // Mấy mode còn lại return ở số 2, 3, 4
+        
+    return 0;
 }
 
 void test(){

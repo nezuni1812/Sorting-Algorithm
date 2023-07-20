@@ -7,8 +7,19 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-    // Algorithm mode
-    // a.exe -a radix-sort input.txt -both
+    // Tên của các thuật sắp xếp:
+    // selection-sort
+    // insertion-sort
+    // bubble-sort
+    // shaker-sort
+    // shell-sort
+    // heap-sort
+    // merge-sort
+    // quick-sort
+    // counting-sort
+    // radix-sort
+    // flash-sort
+    
     int mode = commandLineParser(argc, argv);
     
     switch (mode){
