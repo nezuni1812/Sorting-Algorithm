@@ -187,7 +187,7 @@ void HeapComp(int arr[], int n, unsigned long long &compare) {
     }
 }
 
-void Merging(int a[], int left, int mid, int right) {
+void merging(int a[], int left, int mid, int right) {
     int nLeft = mid - left + 1; //Số phần tử mảng trái
     int nRight = right - (mid + 1) + 1; //Số phần tử mảng phải
     int index = left; //index của array
@@ -227,10 +227,10 @@ void Merge(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0,
     int mid = left + (right - left)/2;
     Merge(a, left, mid);
     Merge(a, mid + 1, right); 
-    Merging(a, left, mid, right); 
+    merging(a, left, mid, right); 
 }
 
-void MergingComp(int a[], int left, int mid, int right, unsigned long long &compare) {
+void mergingComp(int a[], int left, int mid, int right, unsigned long long &compare) {
     int nLeft = mid - left + 1; //Số phần tử mảng trái
     int nRight = right - (mid + 1) + 1; //Số phần tử mảng phải
     int index = left; //index của array
@@ -270,7 +270,7 @@ void MergeComp(int a[], int left, int right, unsigned long long &compare) { // K
     int mid = left + (right - left)/2;
     MergeComp(a, left, mid, compare);
     MergeComp(a, mid + 1, right, compare); 
-    MergingComp(a, left, mid, right, compare); 
+    mergingComp(a, left, mid, right, compare); 
 }
 
 void Quick(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0, right = n - 1
