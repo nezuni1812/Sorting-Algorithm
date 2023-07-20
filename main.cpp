@@ -20,6 +20,7 @@ int main(int argc, char* argv[]){
     // radix-sort
     // flash-sort
     
+    // Hàm commandLineParser sẽ đọc các argument và đưa ra số nguyên biểu thị chế độ chạy
     int mode = commandLineParser(argc, argv);
     
     switch (mode){
@@ -28,6 +29,7 @@ int main(int argc, char* argv[]){
             AlgorithmMode(argc,argv);
             break;
         case 2:
+            // Các chế độ sau cứ thêm vào, 2, 3, 4...
             cout << "IDK\n";
             break;
         default:
