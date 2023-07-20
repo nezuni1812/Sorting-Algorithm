@@ -168,6 +168,32 @@ void Counting(int a[], int n) {
         a[i] = b[i];
 }
 
+void CountingComp(int a[], int n, unsigned long long &comp) {
+    int maxVal = a[0];
+    for (int i = 0; ++comp && i < n; i++)
+        if (maxVal < a[i])
+            maxVal = a[i];
+            
+    int *frequency = new int [maxVal + 1];
+    for (int i = 0; ++comp && i < maxVal + 1; i++)
+        frequency[i] = 0;
+    
+    for (int i = 0; ++comp && i < n; i++)
+        frequency[a[i]]++;
+        
+    for (int i = 1; ++comp && i <= maxVal; i++)
+        frequency[i] += frequency[i - 1];
+        
+    int *b = new int [n];
+    for (int i = n - 1; ++comp && i >= 0; i--){
+        b[frequency[a[i]] - 1] = a[i];
+        frequency[a[i]]--;
+    }
+    
+    for (int i = 0; ++comp && i < n; i++)
+        a[i] = b[i];
+}
+
 void RadixLSD(int a[], int n) {
     int maxVal = a[0];
     
@@ -199,6 +225,51 @@ void RadixLSD(int a[], int n) {
         int index = 0;
         for (int j = 0; j < 10; j++){
             for (int k = 0; k < numCount[j]; k++){
+                a[index++] = numTable[j][k];
+            }
+        }
+        
+        expo*=10;
+    }
+    
+    for (int i = 0; i < 10; i++)
+        delete[] numTable[i];
+        
+    delete[] numTable;
+    
+}
+
+void RadixLSDComp(int a[], int n, unsigned long long &comp) {
+    int maxVal = a[0];
+    
+    for (int i = 1; ++comp && i < n; i++)
+        if (a[i] > maxVal)
+            maxVal = a[i];
+            
+    int nDigit = 0;
+    do {
+        nDigit++;
+        maxVal/=10;
+    }
+    while (++comp && maxVal != 0);
+    
+    int **numTable = new int * [10];
+    for (int x = 0; ++comp && x < 10; x++)
+        numTable[x] = new int [n];
+        
+    int expo = 1;
+    for (int i = 0; ++comp && i < nDigit; i++){
+        int numCount[10] = {0};
+            
+        for (int j = 0; ++comp && j < n; j++){
+            int dgt = a[j] / expo % 10;
+            
+            numTable[dgt][numCount[dgt]++] = a[j];
+        }
+        
+        int index = 0;
+        for (int j = 0; ++comp && j < 10; j++){
+            for (int k = 0; ++comp && k < numCount[j]; k++){
                 a[index++] = numTable[j][k];
             }
         }
@@ -263,4 +334,56 @@ void Flash(int a[], int n) {
 	}
 	delete[] l;
 	Insertion(a, n);
+}
+
+void FlashComp(int a[], int n, unsigned long long &comp) {
+    int minVal = a[0];
+	int max = 0;
+	int m = int(0.45 * n);
+	int* l = new int[m];
+	for (int i = 0; ++comp && i < m; i++)
+		l[i] = 0;
+	for (int i = 1; ++comp && i < n; i++)
+	{
+		if (++comp && a[i] < minVal)
+			minVal = a[i];
+		if (++comp && a[i] > a[max])
+			max = i;
+	}
+	if (a[max] == minVal)
+		return;
+	double c1 = (double)(m - 1) / (a[max] - minVal);
+	for (int i = 0; ++comp && i < n; i++)
+	{
+		int k = int(c1 * (a[i] - minVal));
+		++l[k];
+	}
+	for (int i = 1; ++comp && i < m; i++)
+		l[i] += l[i - 1];
+	swap(a[max], a[0]);
+	int nmove = 0;
+	int j = 0;
+	int k = m - 1;
+	int t = 0;
+	int flash;
+	while (++comp && nmove < n - 1)
+	{
+		while (++comp && j > l[k] - 1)
+		{
+			j++;
+			k = int(c1*(a[j] - minVal));
+		}
+		flash = a[j];
+		if (++comp && k < 0) break;
+		while (++comp && j != l[k])
+		{
+			k = int(c1*(flash - minVal));
+			int hold = a[t = --l[k]];
+			a[t] = flash;
+			flash = hold;
+			++nmove;
+		}
+	}
+	delete[] l;
+	InsertionComp(a, n, comp);
 }
