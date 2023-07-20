@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
     
     switch (mode){
         case 1:
-            cout << "Algorithm Mode\n";
+            cout << "ALGORITHM MODE\n";
             AlgorithmMode(argc,argv);
             break;
         case 2:

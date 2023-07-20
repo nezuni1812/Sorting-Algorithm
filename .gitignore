@@ -1,5 +1,6 @@
 // Remove all executable files from commits
 *.exe
+tempCodeRunnerFile.cpp
 
 // Remove .vscode folder
 .vscode/

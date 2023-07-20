@@ -13,7 +13,8 @@
         "utility": "cpp",
         "xiosbase": "cpp",
         "xstring": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "vector": "cpp"
     },
     "code-runner.executorMap": {
         "javascript": "node",
