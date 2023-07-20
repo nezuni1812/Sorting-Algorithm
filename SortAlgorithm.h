@@ -46,20 +46,68 @@ void InsertionComp(int a[], int n, unsigned long long &compare){
     }
 }
 
-void Bubble() {
-
+void Bubble(int arr[], int n) {
+    int i, j;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
 }
 
-void BubbleComp() {
-
+void BubbleComp(int arr[], int n, unsigned long long &compare) {
+    int i, j;
+    for (i = 0; ++compare && i < n - 1; i++) {
+        for (j = 0; ++compare && j < n - i - 1; j++) {
+            if (++compare && arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
 }
 
-void Shaker() {
-
+void Shaker(int arr[], int n) {
+    int left = 0, right = n - 1, swapped = 1;
+    while (left < right && swapped) {
+        swapped = 0;
+        for (int i = left; i < right; i++) {
+            if (arr[i] > arr[i + 1]) {
+                swap(arr[i], arr[i + 1]);
+                swapped = 1;
+            }
+        }
+        right--;
+        for (int i = right; i > left; i--) {
+            if (arr[i] < arr[i - 1]) {
+                swap(arr[i], arr[i - 1]);
+                swapped = 1;
+            }
+        }
+        left++;
+    }
 }
 
-void ShakerComp() {
-
+void ShakerComp(int arr[], int n, unsigned long long &compare) {
+    int left = 0, right = n - 1, swapped = 1;
+    while (++compare && left < right && swapped) {
+        swapped = 0;
+        for (int i = left; ++compare && i < right; i++) {
+            if (++compare && arr[i] > arr[i + 1]) {
+                swap(arr[i], arr[i + 1]);
+                swapped = 1;
+            }
+        }
+        right--;
+        for (int i = right; ++compare && i > left; i--) {
+            if (++compare && arr[i] < arr[i - 1]) {
+                swap(arr[i], arr[i - 1]);
+                swapped = 1;
+            }
+        }
+        left++;
+    }
 }
 
 void Shell(int a[], int n) {
@@ -86,12 +134,57 @@ void ShellComp(int a[], int n, unsigned long long &compare) {
     }
 }
 
-void Heap() {
-
+void heapify(int arr[], int n, int i) {
+    int largest = i;  
+    int l = 2 * i + 1;  
+    int r = 2 * i + 2; 
+ 
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+ 
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+ 
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
 }
 
-void HeapComp() {
+void Heap(int arr[], int n) {
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+ 
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr[0], arr[i]);
+        heapify(arr, i, 0);
+    }
+}
 
+void heapifyComp(int arr[], int n, int i, unsigned long long &compare) {
+    int largest = i;  
+    int l = 2 * i + 1;  
+    int r = 2 * i + 2; 
+ 
+    if (++compare && l < n && ++compare && arr[l] > arr[largest])
+        largest = l;
+    if (++compare && r < n && ++compare && arr[r] > arr[largest])
+        largest = r;
+ 
+    if (++compare && largest != i) {
+        swap(arr[i], arr[largest]);
+        heapifyComp(arr, n, largest, compare);
+    }
+}
+
+void HeapComp(int arr[], int n, unsigned long long &compare) {
+    for (int i = n / 2 - 1; ++compare && i >= 0; i--)
+        heapifyComp(arr, n, i, compare);
+ 
+    for (int i = n - 1; ++compare && i > 0; i--) {
+        swap(arr[0], arr[i]);
+        heapifyComp(arr, i, 0, compare);
+    }
 }
 
 void Merging(int a[], int left, int mid, int right) {
