@@ -1,2 +1,5 @@
 // Remove all executable files from commits
 *.exe
+
+// Remove .vscode folder
+.vscode/

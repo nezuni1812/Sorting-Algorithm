@@ -1,32 +1,28 @@
 #include <iostream>
 #include <algorithm>
+#include <string.h>
 
-#include "DataGenerator.cpp"
-#include "SortAlgorithm.h"
+#include "utilities.hpp"
 
 using namespace std;
 
-void printArr(int a[], int n){
-    for (int i = 0; i < n; i++)
-        cout << a[i] << " ";
-    cout << "\n";
-}
-
 int main(int argc, char* argv[]){
-    int a[800];
-    int n = sizeof(a)/sizeof(a[0]);
+    // Algorithm mode
+    // a.exe -a radix-sort input.txt -both
+    int mode = commandLineParser(argc, argv);
     
-    GenerateData(a, n, 0);
-    
-    printArr(a, n);
-    
-    cout << "-----------------\n";
-        
-    unsigned long long comp = 0;
-    FlashComp(a, n, comp);
-    
-    printArr(a, n);
-    cout << "Comparisons: " << comp << "\n";
+    switch (mode){
+        case 1:
+            cout << "Algorithm Mode\n";
+            AlgorithmMode(argc,argv);
+            break;
+        case 2:
+            cout << "IDK\n";
+            break;
+        default:
+            cout << "You have not provide any additional argument\n";
+    }
     
     return 0;
 }
+
