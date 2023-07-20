@@ -75,11 +75,11 @@ void Shell(int a[], int n) {
 }
 
 void ShellComp(int a[], int n, unsigned long long &compare) {
-    for (int i = n / 2; ++compare && i > 0; i /= 2) {
-        for (int j = i; ++compare && j < n; j++) {
+    for (int i = n / 2; ++compare && (i > 0); i /= 2) {
+        for (int j = i; ++compare && (j < n); j++) {
             int temp = a[j];
             int k;
-            for (k = j; ++compare && k >= i && ++compare && a[k - i] > temp; k -= i)
+            for (k = j; (++compare && (k >= i)) && (++compare && (a[k - i] > temp)); k -= i)
                 a[k] = a[k - i];
             a[k] = temp;
         }
@@ -94,12 +94,90 @@ void HeapComp() {
 
 }
 
-void Merge() {
+void Merging(int a[], int left, int mid, int right) {
+    int nLeft = mid - left + 1; //Số phần tử mảng trái
+    int nRight = right - (mid + 1) + 1; //Số phần tử mảng phải
+    int index = left; //index của array
 
+    int *leftArr = new int [nLeft];
+    int *rightArr = new int [nRight];
+
+    for (int i = 0; i < nLeft; i++)
+        leftArr[i] = a[left + i];
+    for (int j = 0; j < nRight; j++)
+        rightArr[j] = a[mid + 1 + j];
+
+    int i = 0; 
+    int j = 0;
+
+    while (i < nLeft && j < nRight) {
+        if (leftArr[i] <= rightArr[j])
+            a[index++] = leftArr[i++];
+        else
+            a[index++] = rightArr[j++];
+    }
+
+    while (i < nLeft)
+        a[index++] = leftArr[i++];
+
+    while (j < nRight) 
+        a[index++] = rightArr[j++];
+
+    delete[] leftArr;
+    delete[] rightArr;
 }
 
-void MergeComp() {
+void Merge(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0, right = n - 1
+    if (left >= right) 
+        return; 
 
+    int mid = left + (right - left)/2;
+    Merge(a, left, mid);
+    Merge(a, mid + 1, right); 
+    Merging(a, left, mid, right); 
+}
+
+void MergingComp(int a[], int left, int mid, int right, unsigned long long &compare) {
+    int nLeft = mid - left + 1; //Số phần tử mảng trái
+    int nRight = right - (mid + 1) + 1; //Số phần tử mảng phải
+    int index = left; //index của array
+
+    int *leftArr = new int [nLeft];
+    int *rightArr = new int [nRight];
+
+    for (int i = 0; ++compare && (i < nLeft); i++)
+        leftArr[i] = a[left + i];
+    for (int j = 0; ++compare && (j < nRight); j++)
+        rightArr[j] = a[mid + 1 + j];
+
+    int i = 0; 
+    int j = 0;
+
+    while ((++compare && (i < nLeft)) && (++compare && (j < nRight))) {
+        if (++compare && (leftArr[i] <= rightArr[j]))
+            a[index++] = leftArr[i++];
+        else
+            a[index++] = rightArr[j++];
+    }
+
+    while (++compare && (i < nLeft))
+        a[index++] = leftArr[i++];
+
+    while (++compare && (j < nRight))
+        a[index++] = rightArr[j++];
+
+    delete[] leftArr;
+    delete[] rightArr;
+}
+
+void MergeComp(int a[], int left, int right, unsigned long long &compare) { // Khi gọi hàm, truyền left = 0, right = n - 1
+    if (++compare && (left >= right)) 
+        return; 
+
+    int mid = left + (right - left)/2;
+    MergeComp(a, left, mid, compare);
+    MergeComp(a, mid + 1, right, compare); 
+    MergingComp(a, left, mid, right, compare); 
 }
 
 void Quick(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0, right = n - 1
@@ -110,11 +188,8 @@ void Quick(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0,
             i++;
         while (a[j] > pivot) 
             j--;
-        if (i <= j) {
-            swap(a[i], a[j]);
-            i++;
-            j--;
-        }
+        if (i <= j)
+            swap(a[i++], a[j--]);
     }
     if (left < j) 
         Quick(a, left, j);
@@ -125,20 +200,17 @@ void Quick(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0,
 void QuickComp(int a[], int left, int right, unsigned long long &compare) { //Khi gọi hàm, truyền left = 0, right = n - 1
     int pivot = a[(left + right)/2];
     int i = left, j = right;
-    while (++compare && i < j) {
-        while (++compare && a[i] < pivot) 
+    while (++compare && (i < j)) {
+        while (++compare && (a[i] < pivot))
             i++;
-        while (++compare && a[j] > pivot) 
+        while (++compare && (a[j] > pivot))
             j--;
-        if (++compare && i <= j) {
-            swap(a[i], a[j]);
-            i++;
-            j--;
-        }
+        if (++compare && (i <= j))
+            swap(a[i++], a[j--]);
     }
-    if (++compare && left < j) 
+    if (++compare && (left < j)) 
         QuickComp(a, left, j, compare);
-    if (++compare && i < right) 
+    if (++compare && (i < right)) 
         QuickComp(a, i, right, compare);
 }
 
