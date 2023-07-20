@@ -20,6 +20,12 @@ int main(int argc, char* argv[]){
     // radix-sort
     // flash-sort
     
+    // Tên kiểu sắp xếp:
+    // -rand
+    // -sorted
+    // -reversed
+    // -nearly  
+    
     // Hàm commandLineParser sẽ đọc các argument và đưa ra số nguyên biểu thị chế độ chạy
     int mode = commandLineParser(argc, argv);
     
@@ -33,7 +39,7 @@ int main(int argc, char* argv[]){
             cout << "IDK\n";
             break;
         default:
-            cout << "You have not provide any additional argument\n";
+            cout << "You have not provided any additional argument\n";
     }
     
     return 0;

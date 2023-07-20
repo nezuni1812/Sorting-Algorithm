@@ -40,9 +40,11 @@ bool isAlpha(char *a){
 
 bool containAllNum(char *a){
     int index = 0;
-    while (a[index++])
+    while (a[index]){
         if (!('0' <= a[index] && a[index] <= '9'))
             return false;
+        index++;
+    }
             
     return true;
 }
@@ -68,7 +70,7 @@ int commandLineParser(int argc, char* argv[]){
     if (strcmp(argv[1], "-a") == 0)
         return 1;
         
-    // Mấy mode còn lại return ở số 2, 3, 4
+    // Mấy mode còn lại return số 2, 3, 4
         
     return 0;
 }
@@ -94,7 +96,7 @@ void test(){
 void runSort(int a[], int n, string name = "radix-sort"){
     name = lower(name);
     
-    cout << "Running " << name << "\n";
+    // cout << "Running " << name << "\n";
     
     if (name == "selection-sort")
         Selection(a, n);
@@ -121,6 +123,39 @@ void runSort(int a[], int n, string name = "radix-sort"){
     else{
         cout << "You stoopid, you misstyped the sort alg's name.\nWe will run Quick sort by default.\n";
         Quick(a, 0, n - 1);
+    }
+}
+
+void runSortComp(int a[], int n, string name, unsigned long long &comp){
+    name = lower(name);
+    
+    // cout << "Running " << name << "\n";
+    
+    if (name == "selection-sort")
+        SelectionComp(a, n, comp);
+    else if (name == "insertion-sort")
+        InsertionComp(a, n, comp);
+    else if (name == "bubble-sort")
+        BubbleComp(a, n, comp);
+    else if (name == "shaker-sort")
+        ShakerComp(a, n, comp);
+    else if (name == "shell-sort")
+        ShellComp(a, n, comp);
+    else if (name == "heap-sort")
+        HeapComp(a, n, comp);
+    else if (name == "merge-sort")
+        MergeComp(a, 0, n - 1, comp);
+    else if (name == "quick-sort")
+        QuickComp(a, 0, n - 1, comp);
+    else if (name == "counting-sort")
+        CountingComp(a, n, comp);
+    else if (name == "radix-sort")
+        RadixLSDComp(a, n, comp);
+    else if (name == "flash-sort")
+        FlashComp(a, n, comp);
+    else{
+        cout << "バーカ(￣ε(#￣).\n";
+        QuickComp(a, 0, n - 1, comp);
     }
 }
 
@@ -167,7 +202,6 @@ void AlgorithmMode(int argc, char* argv[]){
         
         cout << DIVIDER;
         
-        
         clock_t start = clock();
         
         runSort(arr, n, argv[2]);
@@ -175,6 +209,13 @@ void AlgorithmMode(int argc, char* argv[]){
         clock_t now = clock();
         
         cout << "Running time (if required): " << static_cast<double>(now - start) / CLOCKS_PER_SEC << "\n";
+        
+        if (argc > 4 && strcmp(argv[4], "-both") == 0){
+            unsigned long long comp = 0;
+            runSortComp(arr, n, argv[2], comp);
+            
+            cout << "Comparisions (if required): " << comp << "\n";
+        }
         
         in.close();
         
@@ -199,9 +240,45 @@ void AlgorithmMode(int argc, char* argv[]){
                 cout << "Thoi gian chay la: " << seconds_elapsed << endl;
                 
                 // printArr(arr, aSize);
-                cout << "---------------\n";
+                cout << DIVIDER;
                 
             }
+            
+            delete []arr;
+        }
+        
+        else {
+            int *arr = new int [aSize];
+            
+            int order = 0;
+            if (strcmp(argv[4], "-rand") == 0)
+                order = 0;
+            if (strcmp(argv[4], "-sorted") == 0)
+                order = 1;
+            if (strcmp(argv[4], "-reversed") == 0)
+                order = 2;
+            if (strcmp(argv[4], "-nearly") == 0)
+                order = 3;
+            
+            GenerateData(arr, aSize, order);
+            
+            const clock_t start = clock();
+            
+            runSort(arr, aSize, argv[2]);
+            
+            clock_t now = clock();
+            
+            cout << DIVIDER;
+            
+            cout << "Running time (if required): " << static_cast<double>(now - start) / CLOCKS_PER_SEC << endl;
+            
+            if (argc > 4 && (strcmp(argv[5], "-both") == 0 || strcmp(argv[5], "-comp") == 0)){
+                unsigned long long comp = 0;
+                runSortComp(arr, aSize, argv[2], comp);
+                
+                cout << "Comparisions (if required): " << comp << "\n";
+            }
+            
             
             delete []arr;
         }
