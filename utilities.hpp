@@ -253,23 +253,34 @@ void AlgorithmMode(int argc, char* argv[]){
             
             
             // Vòng lặp chạy hết các kiểu thứ tự của dữ liệu
-            for (int i = 0; i < 4; i++){
+            for (int i = 0; i < 4; i++) {
                 int *arrStock = new int [aSize];
                 GenerateData(arrStock, aSize, i);
                 int *arr = copyArr(arrStock, aSize);
                 int *arrComp = copyArr(arrStock, aSize);
                 
-                cout << "\nInput order: ";
-                if (i == 0)
-                    cout << "Randomly\n";
-                if (i == 1)
-                    cout << "Sorted\n";
-                if (i == 2)
-                    cout << "Reversed Sorted\n";
-                if (i == 3)
-                    cout << "Nearly Sorted\n";
+                cout << "\nInput order: ";          
+                //In generated input vào file .txt
+                switch(i) {
+                    case 0:
+                        cout << "Randomize\n";
+                        writeTo("input_1.txt", arr, aSize);
+                        break;
+                    case 1:
+                        cout << "Sorted\n";
+                        writeTo("input_2.txt", arr, aSize);
+                        break;
+                    case 2:
+                        cout << "Reversed Sorted\n";
+                        writeTo("input_3.txt", arr, aSize);
+                        break;
+                    case 3:
+                        cout << "Nearly Sorted\n";
+                        writeTo("input_4.txt", arr, aSize);
+                        break;
+                }
+
                 cout << DIVIDER;
-                
                 
                 // Bấm giờ
                 if (argc > 4 && (strcmp(argv[4], "-time") == 0 || strcmp(argv[4], "-both") == 0)){
@@ -427,7 +438,7 @@ void ComparisonMode(int argc, char* argv[]) {
         cout << "Input size: ";
         switch(order) {
             case 0:
-                cout << "Randomly\n";
+                cout << "Randomize\n";
                 break;
             case 1:
                 cout << "Sorted\n";
@@ -440,8 +451,10 @@ void ComparisonMode(int argc, char* argv[]) {
                 break;
         }
 
+        //Tạo data theo yêu cầu về kiểu data
         GenerateData(arr, n, order);
-        // Viết ra file
+
+        // Viết ra file input.txt
         writeTo("input.txt", arr, n);
 
         cout << DIVIDER;
