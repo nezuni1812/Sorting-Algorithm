@@ -12,7 +12,7 @@ void Selection(int a[], int n) {
     }
 }
 
-void SelectionComp(int a[], int n, unsigned long long &compare){
+void SelectionComp(int a[], int n, unsigned long long &compare) {
     for (int i = 0; ++compare && i < n - 1; ++i) {
         int minIndex = i;
         for (int j = i + 1; ++compare && j < n; ++j) 
@@ -189,8 +189,6 @@ void HeapComp(int a[], int n, unsigned long long &compare) {
 }
 
 void merging(int a[], int left, int mid, int right) {
-=======
-void Merging(int a[], int left, int mid, int right) {
     int nLeft = mid - left + 1; //Số phần tử mảng trái
     int nRight = right - (mid + 1) + 1; //Số phần tử mảng phải
     int index = left; //index của array
@@ -207,62 +205,6 @@ void Merging(int a[], int left, int mid, int right) {
     int j = 0;
 
     while (i < nLeft && j < nRight) {
-        if (leftArr[i] <= rightArr[j]) {
-            a[index] = leftArr[i];
-            i++;
-        } 
-        else {
-            a[index] = rightArr[j];
-            j++;
-        }
-        index++;
-    }
-
-    while (i < nLeft) {
-        a[index] = leftArr[i];
-        index++;
-        i++;
-    }
-
-    while (j < nRight) {
-        a[index] = rightArr[j];
-        index++;
-        j++;
-    }
-
-    delete[] leftArr;
-    delete[] rightArr;
-}
-
-void Merge(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0, right = n - 1
-    if (left >= right) 
-        return; 
-
-    int mid = left + (right - left)/2;
-    Merge(a, left, mid);
-    Merge(a, mid + 1, right); 
-    Merging(a, left, mid, right); 
-}
-
-void MergingComp(int a[], int left, int mid, int right, unsigned long long &compare) {
->>>>>>> Stashed changes
-    int nLeft = mid - left + 1; //Số phần tử mảng trái
-    int nRight = right - (mid + 1) + 1; //Số phần tử mảng phải
-    int index = left; //index của array
-
-    int *leftArr = new int [nLeft];
-    int *rightArr = new int [nRight];
-
-    for (int i = 0; i < nLeft; i++)
-        leftArr[i] = a[left + i];
-    for (int j = 0; j < nRight; j++)
-        rightArr[j] = a[mid + 1 + j];
-
-    int i = 0; 
-    int j = 0;
-
-    while (i < nLeft && j < nRight) {
-<<<<<<< Updated upstream
         if (leftArr[i] <= rightArr[j])
             a[index++] = leftArr[i++];
         else
@@ -317,51 +259,19 @@ void mergingComp(int a[], int left, int mid, int right, unsigned long long &comp
 
     while (++compare && (j < nRight))
         a[index++] = rightArr[j++];
-=======
-        if (leftArr[i] <= rightArr[j]) {
-            a[index] = leftArr[i];
-            i++;
-        } 
-        else {
-            a[index] = rightArr[j];
-            j++;
-        }
-        index++;
-    }
-
-    while (i < nLeft) {
-        a[index] = leftArr[i];
-        index++;
-        i++;
-    }
-
-    while (j < nRight) {
-        a[index] = rightArr[j];
-        index++;
-        j++;
-    }
->>>>>>> Stashed changes
 
     delete[] leftArr;
     delete[] rightArr;
 }
 
 void MergeComp(int a[], int left, int right, unsigned long long &compare) { // Khi gọi hàm, truyền left = 0, right = n - 1
-<<<<<<< Updated upstream
     if (++compare && (left >= right)) 
-=======
-    if (left >= right) 
->>>>>>> Stashed changes
         return; 
 
     int mid = left + (right - left)/2;
     MergeComp(a, left, mid, compare);
     MergeComp(a, mid + 1, right, compare); 
-<<<<<<< Updated upstream
     mergingComp(a, left, mid, right, compare); 
-=======
-    MergingComp(a, left, mid, right, compare); 
->>>>>>> Stashed changes
 }
 
 void Quick(int a[], int left, int right) { // Khi gọi hàm, truyền left = 0, right = n - 1
