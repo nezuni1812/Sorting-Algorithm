@@ -53,7 +53,7 @@ string lower(string a){
 }
 
 int commandLineParser(int argc, char* argv[]){
-    // Nếu không có argument,argc == 1 -> return 0
+    // Nếu không có argument, argc == 1 -> return 0
     if (argc == 1)
         return 0;
         
@@ -62,7 +62,7 @@ int commandLineParser(int argc, char* argv[]){
         return 1;
         
     // Nếu ở mode Comparison -> return 2
-    if (strcmp(argv[1], "-c") == 2)
+    if (strcmp(argv[1], "-c") == 0)
         return 2;
         
     return 0;
@@ -295,7 +295,7 @@ void AlgorithmMode(int argc, char* argv[]){
                 delete []arrStock;
             }
             
-            
+
         }
         
         else {
@@ -338,7 +338,6 @@ void AlgorithmMode(int argc, char* argv[]){
                 cout << "Comparisons (if required): " << comp << "\n";
             }
             
-            
             delete []arr;
             delete []arrComp;
         }
@@ -346,6 +345,135 @@ void AlgorithmMode(int argc, char* argv[]){
 
 }
 
-void ComparisonMode(int argc, char* argv[]){
-    
+void ComparisonMode(int argc, char* argv[]) {
+    if (argc < 5){
+        cout << "Not enough arguments for Comparison Mode\n";
+        return;
+    }
+
+    cout << "Algorithm: " << argv[2] << " | " << argv[3] << "\n";
+
+    //Command 4 Sort theo file cho sẵn
+    if (!containAllNum(argv[4])){
+        ifstream ifs(argv[3]);
+        
+        cout << "Algorithm: " << argv[2] << "\n";
+        cout << "Input file: " << argv[3] << "\n";
+        
+        vector<int> list;
+        
+        int data;
+        int n;
+        ifs >> n;
+        while (ifs >> data)
+            list.push_back(data);
+        
+        ifs.close();
+        // Đưa các số từ mảng vector vào mảng cấp phát động
+        n = list.size();
+        int *arr = new int [n];
+        for (int i = 0; i < n; i++)
+            arr[i] = list[i];
+        
+        // Mảng phụ dùng cho Sort 2 và đếm comparisons của 2 sort
+        int *arr2 = copyArr(arr, n);
+        int *arrComp = copyArr(arr, n);
+        int *arr2Comp = copyArr(arr, n);
+            
+        cout << "Input size: " << n << "\n";
+        cout << DIVIDER;
+
+        // Đếm giờ Sort 1
+        const clock_t start = clock();
+        runSort(arr, n, argv[2]);
+        clock_t now = clock();
+        
+        cout << "Running time: " << static_cast<double>(now - start) / CLOCKS_PER_SEC << " | ";
+        
+        //Đếm giờ Sort 2
+        const clock_t start2 = clock();
+        runSort(arr2, n, argv[3]);
+        clock_t now2 = clock();
+
+        cout << static_cast<double>(now2 - start2) / CLOCKS_PER_SEC << "\n";
+
+        //Đếm comparisons 2 sort
+        unsigned long long comp1 = 0, comp2 = 0;
+        runSortComp(arrComp, n, argv[2], comp1);
+        runSortComp(arr2Comp, n, argv[3], comp2);
+        cout << "Comparisons: " << comp1 << " | " << comp2;
+
+        delete []arr;
+        delete []arr2;
+        delete []arrComp;
+        delete []arr2Comp;
+    }
+    else { //Command 5 Sort theo yêu cầu
+        cout << "Input file: " << argv[4] << "\n";
+        
+        int n = atoi(argv[4]);
+        int *arr = new int [n];
+
+        int order = 0;
+        if (strcmp(argv[5], "-rand") == 0)
+            order = 0;
+        if (strcmp(argv[5], "-sorted") == 0)
+            order = 1;
+        if (strcmp(argv[5], "-rev") == 0)
+            order = 2;
+        if (strcmp(argv[5], "-nsorted") == 0)
+            order = 3;
+
+        cout << "Input size: ";
+        switch(order) {
+            case 0:
+                cout << "Randomly\n";
+                break;
+            case 1:
+                cout << "Sorted\n";
+                break;
+            case 2:
+                cout << "Reversed Sorted\n";
+                break;
+            case 3:
+                cout << "Nearly Sorted\n";
+                break;
+        }
+
+        GenerateData(arr, n, order);
+        // Viết ra file
+        writeTo("input.txt", arr, n);
+
+        cout << DIVIDER;
+        // Mảng phụ dùng cho Sort 2 và đếm comparisons của 2 sort
+        int *arr2 = copyArr(arr, n);
+        int *arrComp = copyArr(arr, n);
+        int *arr2Comp = copyArr(arr, n);
+        
+        // Đếm giờ Sort 1
+        const clock_t start = clock();
+        runSort(arr, n, argv[2]);
+        clock_t now = clock();
+        
+        cout << "Running time: " << static_cast<double>(now - start) / CLOCKS_PER_SEC << " | ";
+        
+        //Đếm giờ Sort 2
+        const clock_t start2 = clock();
+        runSort(arr2, n, argv[3]);
+        clock_t now2 = clock();
+
+        cout << static_cast<double>(now2 - start2) / CLOCKS_PER_SEC << "\n";
+
+        //Đếm comparisons 2 sort
+        unsigned long long comp1 = 0, comp2 = 0;
+        runSortComp(arrComp, n, argv[2], comp1);
+        runSortComp(arr2Comp, n, argv[3], comp2);
+        cout << "Comparisons: " << comp1 << " | " << comp2;
+
+        printArr(arr,n);
+        delete []arr;
+        delete []arr2;
+        delete []arrComp;
+        delete []arr2Comp;
+    }
 }
