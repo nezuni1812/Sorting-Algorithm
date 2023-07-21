@@ -242,8 +242,6 @@ void AlgorithmMode(int argc, char* argv[]){
     else {
         // Đầu vào cho cả Command 2 và 3
         
-        cout << "Auto generate\n";
-        
         int aSize = atoi(argv[3]);
         
         // Nếu số lượng argument ít hơn 6 -> chạy Command 3 else -> chạy Command 2
