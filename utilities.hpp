@@ -368,7 +368,6 @@ void ComparisonMode(int argc, char* argv[]) {
     if (!containAllNum(argv[4])){
         ifstream ifs(argv[3]);
         
-        cout << "Algorithm: " << argv[2] << "\n";
         cout << "Input file: " << argv[3] << "\n";
         
         vector<int> list;
@@ -420,7 +419,6 @@ void ComparisonMode(int argc, char* argv[]) {
         delete []arr2Comp;
     }
     else { //Command 5 Sort theo yêu cầu
-        cout << "Input file: " << argv[4] << "\n";
         
         int n = atoi(argv[4]);
         int *arr = new int [n];
@@ -435,7 +433,8 @@ void ComparisonMode(int argc, char* argv[]) {
         if (strcmp(argv[5], "-rev") == 0)
             order = 3;
 
-        cout << "Input size: ";
+        cout << "Input size: " << n << "\n";
+        cout << "Input order: ";
         switch(order) {
             case 0:
                 cout << "Randomize\n";
