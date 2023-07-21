@@ -109,7 +109,7 @@ void runSort(int a[], int n, string name = "radix-sort"){
     else if (name == "flash-sort")
         Flash(a, n);
     else{
-        cout << "You stoopid, you misstyped the sort alg's name.\nWe will run Quick sort by default.\n";
+        cout << "You have mistyped the sort alg's name.\nWe will run Quick sort by default.\n";
         Quick(a, 0, n - 1);
     }
 }
