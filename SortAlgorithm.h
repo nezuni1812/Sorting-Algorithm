@@ -161,7 +161,6 @@ void Heap(int a[], int n) {
     }
 }
 
-<<<<<<< Updated upstream
 void heapifyComp(int a[], int n, int i, unsigned long long &compare) {
     int largest = i;  
     int l = 2 * i + 1;  
