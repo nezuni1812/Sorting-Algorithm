@@ -22,7 +22,7 @@ void SelectionComp(int a[], int n, unsigned long long &compare) {
     }
 }
 
-void Insertion(int a[], int n){
+void Insertion(int a[], int n) {
     for (int i = 1; i < n; ++i) {
         int key = a[i];
         int j = i - 1;
@@ -34,7 +34,7 @@ void Insertion(int a[], int n){
     }
 }
 
-void InsertionComp(int a[], int n, unsigned long long &compare){
+void InsertionComp(int a[], int n, unsigned long long &compare) {
     for (int i = 1; ++compare && i < n; ++i) {
         int key = a[i];
         int j = i - 1;
@@ -434,7 +434,7 @@ void RadixLSDComp(int a[], int n, unsigned long long &comp) {
         
         int index = 0;
         for (int j = 0; ++comp && j < 10; j++){
-            for (int k = 0; ++comp && k < numCount[j]; k++){
+            for (int k = 0; ++comp && k < numCount[j]; k++) {
                 a[index++] = numTable[j][k];
             }
         }
