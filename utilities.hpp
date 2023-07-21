@@ -267,15 +267,15 @@ void AlgorithmMode(int argc, char* argv[]){
                         writeTo("input_1.txt", arr, aSize);
                         break;
                     case 1:
-                        cout << "Sorted\n";
+                        cout << "Nearly Sorted\n";
                         writeTo("input_2.txt", arr, aSize);
                         break;
                     case 2:
-                        cout << "Reversed Sorted\n";
+                        cout << "Sorted\n";
                         writeTo("input_3.txt", arr, aSize);
                         break;
                     case 3:
-                        cout << "Nearly Sorted\n";
+                        cout << "Reversed Sorted\n";
                         writeTo("input_4.txt", arr, aSize);
                         break;
                 }
@@ -315,11 +315,11 @@ void AlgorithmMode(int argc, char* argv[]){
             int order = 0;
             if (strcmp(argv[4], "-rand") == 0)
                 order = 0;
-            if (strcmp(argv[4], "-sorted") == 0)
-                order = 1;
-            if (strcmp(argv[4], "-rev") == 0)
-                order = 2;
             if (strcmp(argv[4], "-nsorted") == 0)
+                order = 1;
+            if (strcmp(argv[4], "-sorted") == 0)
+                order = 2;
+            if (strcmp(argv[4], "-rev") == 0)
                 order = 3;
             
             cout << DIVIDER;
@@ -428,11 +428,11 @@ void ComparisonMode(int argc, char* argv[]) {
         int order = 0;
         if (strcmp(argv[5], "-rand") == 0)
             order = 0;
-        if (strcmp(argv[5], "-sorted") == 0)
-            order = 1;
-        if (strcmp(argv[5], "-rev") == 0)
-            order = 2;
         if (strcmp(argv[5], "-nsorted") == 0)
+            order = 1;
+        if (strcmp(argv[5], "-sorted") == 0)
+            order = 2;
+        if (strcmp(argv[5], "-rev") == 0)
             order = 3;
 
         cout << "Input size: ";
@@ -441,13 +441,13 @@ void ComparisonMode(int argc, char* argv[]) {
                 cout << "Randomize\n";
                 break;
             case 1:
-                cout << "Sorted\n";
+                cout << "Nearly Sorted\n";
                 break;
             case 2:
-                cout << "Reversed Sorted\n";
+                cout << "Sorted\n";
                 break;
             case 3:
-                cout << "Nearly Sorted\n";
+                cout << "Reversed Sorted\n";
                 break;
         }
         
