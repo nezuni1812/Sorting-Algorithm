@@ -482,7 +482,6 @@ void ComparisonMode(int argc, char* argv[]) {
         runSortComp(arr2Comp, n, argv[3], comp2);
         cout << "Comparisons: " << comp1 << " | " << comp2;
 
-        printArr(arr,n);
         delete []arr;
         delete []arr2;
         delete []arrComp;
