@@ -366,9 +366,9 @@ void ComparisonMode(int argc, char* argv[]) {
 
     //Command 4 Sort theo file cho sẵn
     if (!containAllNum(argv[4])){
-        ifstream ifs(argv[3]);
+        ifstream ifs(argv[4]);
         
-        cout << "Input file: " << argv[3] << "\n";
+        cout << "Input file: " << argv[4] << "\n";
         
         vector<int> list;
         
