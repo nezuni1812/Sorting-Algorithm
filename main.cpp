@@ -23,8 +23,8 @@ int main(int argc, char* argv[]){
     // Tên kiểu sắp xếp:
     // -rand
     // -sorted
-    // -reversed
-    // -nearly  
+    // -rev
+    // -nsorted  
     
     // Hàm commandLineParser sẽ đọc các argument và đưa ra số nguyên biểu thị chế độ chạy
     int mode = commandLineParser(argc, argv);
@@ -35,8 +35,8 @@ int main(int argc, char* argv[]){
             AlgorithmMode(argc,argv);
             break;
         case 2:
-            // Các chế độ sau cứ thêm vào, 2, 3, 4...
-            cout << "IDK\n";
+            cout << "COMPARE MODE\n";
+            ComparisonMode(argc, argv);
             break;
         default:
             cout << "You have not provided any additional argument\n";
