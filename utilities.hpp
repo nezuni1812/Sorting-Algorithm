@@ -273,6 +273,7 @@ void AlgorithmMode(int argc, char* argv[]){
             cout << "Running time (if required): " << static_cast<double>(now - start) / CLOCKS_PER_SEC << endl;
             
             if (argc > 4 && (strcmp(argv[5], "-both") == 0 || strcmp(argv[5], "-comp") == 0)){
+                cout << "comp: \n";
                 unsigned long long comp = 0;
                 runSortComp(arr, aSize, argv[2], comp);
                 
