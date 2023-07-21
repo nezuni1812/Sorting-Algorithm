@@ -71,6 +71,7 @@ void GenerateData(int a[], int n, int dataType)
 		break;
 	case 2: // có thứ tự
 		GenerateSortedData(a, n);
+		break;
 	case 3:	// có thứ tự ngược
 		GenerateReverseData(a, n);
 		break;
