@@ -15,7 +15,8 @@
         "xstring": "cpp",
         "xutility": "cpp",
         "vector": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "algorithm": "cpp"
     },
     "code-runner.executorMap": {
         "javascript": "node",
