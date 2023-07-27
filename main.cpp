@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <string.h>
 
-#include "utilities.hpp"
+#include "utilities.h"
 
 using namespace std;
 

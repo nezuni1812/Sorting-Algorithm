@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "utilities.hpp"
+#include "utilities.h"
 
 using namespace std;
 

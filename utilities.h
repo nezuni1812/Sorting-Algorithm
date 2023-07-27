@@ -233,6 +233,13 @@ void AlgorithmMode(int argc, char* argv[]){
             cout << "Comparisons (if required): " << comp << "\n";
         }
         
+        
+        // Viết ra file
+        if (argc > 4 && (strcmp(argv[4], "-time") == 0 || strcmp(argv[4], "-both") == 0))
+            writeTo("output.txt", arr, n);
+        else
+            writeTo("output.txt", arrComp, n);
+        
         delete []arr;
         delete []arrComp;
         
@@ -294,12 +301,11 @@ void AlgorithmMode(int argc, char* argv[]){
                 // Đếm comparison
                 if (argc > 4 && (strcmp(argv[4], "-comp") == 0 || strcmp(argv[4], "-both") == 0)){
                     unsigned long long comp = 0;
-                    runSortComp(arr, aSize, argv[2], comp);
+                    runSortComp(arrComp, aSize, argv[2], comp);
                     cout << "Comparisons (if required): " << comp << endl;
                     
                 }
                 
-                // printArr(arr, aSize);
                 
                 delete []arr;
                 delete []arrComp;
@@ -348,6 +354,12 @@ void AlgorithmMode(int argc, char* argv[]){
                 
                 cout << "Comparisons (if required): " << comp << "\n";
             }
+            
+            // Viết ra file
+            if (argc > 4 && (strcmp(argv[4], "-time") == 0 || strcmp(argv[4], "-both") == 0))
+                writeTo("output.txt", arr, aSize);
+            else
+                writeTo("output.txt", arrComp, aSize);
             
             delete []arr;
             delete []arrComp;
