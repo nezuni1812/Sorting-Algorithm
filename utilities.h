@@ -369,6 +369,29 @@ void AlgorithmMode(int argc, char* argv[]){
 }
 
 void ComparisonMode(int argc, char* argv[]) {
+    /* 
+    Pseudo code:
+    
+    if (there argv[4] is not a number => it's a file's name)
+        do Command 4:
+            open file
+            turn file's content to a vector, then make a allocated array from that vector
+            make three more copies of dateset
+                count run time of sort 1
+                count run time of sort 2
+
+                count comparisons of sort 1
+                count comparisons of sort 2
+    else
+        do Command 5:
+            for order in all_dataset_orders:
+                make three more copies of dateset
+                    count run time of sort 1
+                    count run time of sort 2
+
+                    count comparisons of sort 1
+                    count comparisons of sort 2
+     */
     if (argc < 5){
         cout << "Not enough arguments for Comparison Mode\n";
         return;
